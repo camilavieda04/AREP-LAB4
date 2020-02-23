@@ -21,7 +21,12 @@ import javax.imageio.ImageIO;
  *
  * @author sarah.vieda
  */
-//
+
+
+/**
+ * A traves de las etiquetas @Web se pueden ejecutar las siguientes funcionalidades 
+ * @author sarah.vieda
+ */
 public class WebServiceHello {
     /*
     public static String hello(){
@@ -37,6 +42,12 @@ public class WebServiceHello {
                 +"</html>";
     }
     */
+    
+    /**
+     * Metodo que retorna una imagen 
+     * @param tipo Tipo de archivo de entrada
+     * @param clienteOutput Quien solicita el recurso
+     */
     @Web 
     public static void getImagen(String tipo, OutputStream clienteOutput){
         try {
@@ -56,7 +67,12 @@ public class WebServiceHello {
             System.out.println("r" + e.getMessage());
         }
     }
-    
+    /**
+     * Metodo que retorna un archivo HTML 
+     * @param ruta ruta donde se encuentra el archivo html
+     * @param outputStream Quien solicita el recurso 
+     * @throws IOException 
+     */
     @Web
     private static void getArchivoHTML(String ruta, OutputStream outputStream) throws IOException {
         /*
@@ -80,7 +96,12 @@ public class WebServiceHello {
 
     }
     
-    
+    /**
+     * Metodo que retorna un archivo JSON
+     * @param ruta ruta donde se encuentra el archivo html
+     * @param outputStream Quien solicita el recurso
+     * @throws IOException 
+     */
     @Web
      private static void getArchivoJS(String ruta, OutputStream outputStream) throws IOException {
         /*

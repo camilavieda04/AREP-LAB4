@@ -12,6 +12,11 @@ import java.lang.annotation.RetentionPolicy;
  *
  * @author sarah.vieda
  */
+
+/**
+ *Permite la implementacion de @Web
+ * @author sarah.vieda
+ */
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Web {
     

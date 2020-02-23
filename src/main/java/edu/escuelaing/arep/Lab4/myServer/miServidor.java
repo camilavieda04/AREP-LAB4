@@ -18,6 +18,15 @@ import java.lang.reflect.InvocationTargetException;
  */
 public class miServidor {
 
+    /**
+     * Método donde se crea el servidor 
+     * @param args Argumentos de entrada
+     * @throws IOException
+     * @throws ClassNotFoundException
+     * @throws IllegalAccessException
+     * @throws IllegalArgumentException 
+     */
+    
     public static void main(String[] args) throws IOException, ClassNotFoundException, IllegalAccessException, IllegalArgumentException {
         //System.out.println("hola");
         ServerSocket serverSocket = null;
@@ -79,6 +88,10 @@ public class miServidor {
         }
     }
 
+    /**
+     * Método que retorna el puerto por el cual correra mi aplicación 
+     * @return puerto 
+     */
     static int getPort() {
         if (System.getenv("PORT") != null) {
             return Integer.parseInt(System.getenv("PORT"));
@@ -86,8 +99,6 @@ public class miServidor {
         return 4567;
     }
 
-    public void run() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 
 }

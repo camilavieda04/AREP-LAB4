@@ -38,20 +38,20 @@ public class WebServiceHello {
     }
     */
     @Web 
-    public static void getImagen(String tipo, OutputStream clienteOutput, PrintWriter out) throws IOException {
+    public static void getImagen(String tipo, OutputStream clienteOutput){
         try {
             BufferedImage image = ImageIO.read(new File(System.getProperty("user.dir") + tipo));
             ByteArrayOutputStream ArrBytes = new ByteArrayOutputStream();
             DataOutputStream writeImg = new DataOutputStream(clienteOutput);
-            String img = "HTTP /1.1 404 NOT FOUND \r\n"
-                    + "Content-Type: text/html; charset=\"UTF-8\" \r\n"
-                    + "\r\n";
+            //String img = "HTTP /1.1 404 NOT FOUND \r\n"
+               //     + "Content-Type: text/html; charset=\"UTF-8\" \r\n"
+                 //   + "\r\n";
             ImageIO.write(image, "PNG", ArrBytes);
             writeImg.writeBytes("HTTP/1.1 200 OK \r\n");
             writeImg.writeBytes("Content-Type: image/png \r\n");
             writeImg.writeBytes("\r\n");
             writeImg.write(ArrBytes.toByteArray());
-            System.out.println(System.getProperty("user.dir") + tipo);
+            //System.out.println(System.getProperty("user.dir") + tipo);
         } catch (IOException e) {
             System.out.println("r" + e.getMessage());
         }

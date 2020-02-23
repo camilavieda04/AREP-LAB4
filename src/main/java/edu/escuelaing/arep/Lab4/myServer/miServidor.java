@@ -45,20 +45,19 @@ public class miServidor {
             //file = "/";
             while ((inputLine = in.readLine()) != null) {
                 if (inputLine.contains("GET")) {
-                    String[] url1 = inputLine.split("/");
-                    String[] url2 = url1[1].split(" ");
+                    String[] url1 = inputLine.split(" ");
+                    String[] url2 = url1[1].split("/");
                     //file  = inputLine.substring(inputLine.indexOf("/")+1,inputLine.indexOf(" ", inputLine.indexOf(" ")+1));
                     //break;}
                     System.out.println(url2[0]);
-                    if (url2[0].contains("/WebServiceHello")) {
-                        Class<?> clase = Class.forName("edu.escuelaing.arep.Lab4.ws." + url1[1]);
+                    if (url1[1].contains("/ws")) {
+                        Class<?> clase = Class.forName("edu.escuelaing.arep.Lab4.ws." + url2[1]);
                         for (Method m : clase.getMethods()) {
                             if (m.isAnnotationPresent(Web.class)) {
-                                String[] resp = url1[2].split("[, ?.@)+");
-                            }
-                            if (m.getName().equals(url1[1])) {
+                                String[] resp = url2[2].split("[, ?.@)+");
+                            if (m.getName().equals(resp[1])) {
                                 try {
-                                    m.invoke(clase, "/src/main/resources/" + url1[2], clienteSocket.getOutputStream());
+                                    m.invoke(clase, "/src/main/resources/" + url2[2], clienteSocket.getOutputStream());
                                 } catch (InvocationTargetException ex) {
                                     Logger.getLogger(miServidor.class.getName()).log(Level.SEVERE, null, ex);
                                 }
@@ -76,7 +75,7 @@ public class miServidor {
                 clienteSocket.close();
                 serverSocket.close();
             }
-
+            }
         }
     }
 

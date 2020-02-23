@@ -5,6 +5,16 @@
  */
 package edu.escuelaing.arep.Lab4.ws;
 import edu.escuelaing.arep.Lab4.annotations.Web;
+import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.PrintWriter;
+import javax.imageio.ImageIO;
 
 
 /**
@@ -13,8 +23,7 @@ import edu.escuelaing.arep.Lab4.annotations.Web;
  */
 //
 public class WebServiceHello {
-    @Web
-    
+    /*
     public static String hello(){
         return "<!DOCTYPE html>"
                 +"<html>"
@@ -27,5 +36,77 @@ public class WebServiceHello {
                 +"</body>"
                 +"</html>";
     }
+    */
+    @Web 
+    public static void getImagen(String tipo, OutputStream clienteOutput, PrintWriter out) throws IOException {
+        try {
+            BufferedImage image = ImageIO.read(new File(System.getProperty("user.dir") + tipo));
+            ByteArrayOutputStream ArrBytes = new ByteArrayOutputStream();
+            DataOutputStream writeImg = new DataOutputStream(clienteOutput);
+            String img = "HTTP /1.1 404 NOT FOUND \r\n"
+                    + "Content-Type: text/html; charset=\"UTF-8\" \r\n"
+                    + "\r\n";
+            ImageIO.write(image, "PNG", ArrBytes);
+            writeImg.writeBytes("HTTP/1.1 200 OK \r\n");
+            writeImg.writeBytes("Content-Type: image/png \r\n");
+            writeImg.writeBytes("\r\n");
+            writeImg.write(ArrBytes.toByteArray());
+            System.out.println(System.getProperty("user.dir") + tipo);
+        } catch (IOException e) {
+            System.out.println("r" + e.getMessage());
+        }
+    }
+    
+    @Web
+    private static void getArchivoHTML(String ruta, OutputStream outputStream) throws IOException {
+        /*
+         String temp = "";*/
+        try {
+            String text = "";
+            String temp;
+            BufferedReader t = new BufferedReader(new FileReader(System.getProperty("user.dir") + ruta));
+            while ((temp = t.readLine()) != null) {
+                //System.out.println(temp);
+                text = text + temp;
+            }
+            outputStream.write(("HTTP/1.1 201 Found  \r\n"
+                    + "Content-Type: text/html; charset=\"utf-8\" \r\n"
+                    + "\r\n"
+                    + text).getBytes());
+        } catch (IOException e) {
+            //System.out.println("entre pero no hice nada");
+            //e.printStackTrace();
+        }
+
+    }
+    
+    
+    @Web
+     private static void getArchivoJS(String ruta, OutputStream outputStream) throws IOException {
+        /*
+         String temp = "";*/
+        try {
+            String text = "";
+            String temp;
+            BufferedReader t = new BufferedReader(new FileReader(System.getProperty("user.dir") + ruta));
+            while ((temp = t.readLine()) != null) {
+                //System.out.println(temp);
+                text = text + temp;
+            }
+            outputStream.write(("HTTP/1.1 201 FOUND  \r\n"
+                    + "Content-Type: application/json; charset=\"UTF-8\" \r\n"
+                    + "\r\n"
+                    + text).getBytes());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+     
+     
+     
+    
+    
+    
     
 }

@@ -62,8 +62,10 @@ public class miServidor {
                     if (url1[1].contains("/ws")) {
                         Class<?> clase = Class.forName("edu.escuelaing.arep.Lab4.ws." + url2[1]);
                         for (Method m : clase.getMethods()) {
+                            System.out.println("Soy m: "+m);
                             if (m.isAnnotationPresent(Web.class)) {
                                 String[] resp = url2[2].split("[, ?.@)+");
+                                System.out.println("resp"+resp);
                             if (m.getName().equals(resp[1])) {
                                 try {
                                     m.invoke(clase, "/src/main/resources/" + url2[2], clienteSocket.getOutputStream());

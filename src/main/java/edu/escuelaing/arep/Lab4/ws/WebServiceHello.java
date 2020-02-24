@@ -74,7 +74,7 @@ public class WebServiceHello {
      * @throws IOException 
      */
     @Web
-    private static void html(String ruta, OutputStream outputStream) {
+    public static void html(String ruta, OutputStream outputStream) {
         /*
          String temp = "";*/
         try {
@@ -103,7 +103,7 @@ public class WebServiceHello {
      * @throws IOException 
      */
     @Web
-     private static void js(String ruta, OutputStream outputStream) {
+     public static void js(String ruta, OutputStream outputStream) {
         /*
          String temp = "";*/
         try {

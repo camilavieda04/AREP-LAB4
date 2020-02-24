@@ -49,7 +49,7 @@ public class WebServiceHello {
      * @param clienteOutput Quien solicita el recurso
      */
     @Web 
-    public static void getImagen(String tipo, OutputStream clienteOutput){
+    public static void jpg(String tipo, OutputStream clienteOutput){
         try {
             BufferedImage image = ImageIO.read(new File(System.getProperty("user.dir") + tipo));
             ByteArrayOutputStream ArrBytes = new ByteArrayOutputStream();
@@ -74,7 +74,7 @@ public class WebServiceHello {
      * @throws IOException 
      */
     @Web
-    private static void getArchivoHTML(String ruta, OutputStream outputStream) throws IOException {
+    private static void html(String ruta, OutputStream outputStream) {
         /*
          String temp = "";*/
         try {
@@ -103,7 +103,7 @@ public class WebServiceHello {
      * @throws IOException 
      */
     @Web
-     private static void getArchivoJS(String ruta, OutputStream outputStream) throws IOException {
+     private static void js(String ruta, OutputStream outputStream) {
         /*
          String temp = "";*/
         try {
